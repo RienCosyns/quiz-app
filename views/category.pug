@@ -1,0 +1,27 @@
+extends layout
+block content
+    a.btn.btn-info(href="/") Home
+    p(id="scorePar", style="display: none;") Your Score: 
+        span(id="score")
+    hr
+    form.form-group.questions(action="/quiz", method="POST", id="quizform")
+        each question, i in questions
+            .panel.panel-primary
+                .panel-heading
+                    h3!= question.question
+                .panel-body
+                    ul.list-group
+                        - var answers = question.incorrect_answers;
+                        - answers.push(question.correct_answer);
+                        - var randomizedArray = shuffle(answers);
+                        each answer, j in randomizedArray   
+                            if randomizedArray[j] == question.correct_answer
+                                li.list-group-item
+                                    input(type="radio", name="question" + i, value="correct")
+                                    |  #{question.correct_answer}
+                            else
+                                li.list-group-item
+                                    input(type="radio", name="question" + i, value="wrong")
+                                    |  #{randomizedArray[j]}
+        input.btn.btn-success(type="submit", value="submit")
+    a.btn.btn-info(href="/") Home

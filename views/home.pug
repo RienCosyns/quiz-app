@@ -1,0 +1,25 @@
+extends layout
+block content
+    form.form-group(method="GET", action="/quiz", id="selection")
+        label(for="categories") Categories: 
+        br
+        select.form-control(name="categories", form="selection")
+            option(value="Any") Any
+            option(value="General Knowledge") General Knowledge
+            option(value="Film") Film
+            option(value="Music") Music
+            option(value="Video Games") Video Games
+            option(value="Science And Nature") Science And Nature
+            option(value="Sports") Sports
+            option(value="History") History
+            option(value="Geography") Geography
+            option(value="Politics") Politics
+        br
+        label(for="difficulty") Difficulty: 
+        br
+        select.form-control(name="difficulty", form="selection")
+            option(value="easy") Easy
+            option(value="medium") Medium
+            option(value="hard") Hard
+        br
+        input.btn.btn-primary(type="submit")
